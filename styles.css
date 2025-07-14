@@ -1,0 +1,83 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+body {
+  background-color: white;
+  color: #b2bec3;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.logos {
+  gap: 30px;
+}
+
+.logos img {
+  height: 50px;
+  width: 80px;
+  border-radius: 6px;
+  margin: 0 15px;
+}
+
+header {
+  background-color: #2d3436;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 2rem;
+  border-bottom: 2px solid transparent;
+  position: relative;
+}
+
+.header-text {
+  color: #b2bec3;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #b2bec3;
+  font-size: 2rem;
+  white-space: nowrap;
+}
+
+.header-text-geo {
+  color: #d63031;
+}
+
+body.dark {
+  background-color: #2d3436;
+  color: #f0f0f0;
+}
+
+body.dark header {
+  border-bottom: 2px solid #b2bec3;
+}
+
+.toggle-container {
+  position: fixed;
+  top: 2.5%;
+  right: 10%;
+  z-index: 1000;
+}
+
+.toggle-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #eee;
+  border: 2px solid #b2bec3;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: #333;
+}
+
+body.dark .toggle-circle {
+  background: #444;
+  color: #fff;
+}

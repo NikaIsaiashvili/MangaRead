@@ -37,7 +37,6 @@ header {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  color: #b2bec3;
   font-size: 2rem;
   white-space: nowrap;
 }
@@ -80,4 +79,46 @@ body.dark header {
 body.dark .toggle-circle {
   background: #444;
   color: #fff;
+}
+
+.search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px auto;
+  width: 50%;
+  position: relative;
+}
+
+#searchInput {
+  width: 100%;
+  padding: 10px 45px 10px 15px;
+  border: 2px solid #2d3436;
+  border-bottom-left-radius: 7px;
+  border-top-left-radius: 7px;
+  font-size: 1rem;
+  text-align: center;
+  border-right: none;
+  outline: none;
+}
+
+#searchInput::placeholder {
+  font-size: 1rem;
+  color: #2d3436;
+  text-align: center;
+}
+
+.search-btn {
+  position: absolute;
+  right: -40px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border: 3px solid #2d3436;
+  border-bottom-right-radius: 7px;
+  border-top-right-radius: 7px;
+  background-color: white;
 }

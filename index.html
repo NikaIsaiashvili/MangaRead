@@ -22,15 +22,28 @@
     </header>
 
     <div class="search-container">
-      <input
-        type="search"
-        id="searchInput"
-        placeholder="Search manga to read..."
-      />
-      <button class="search-btn">🔍</button>
-      <div class="search-box" id="search-box-show">
-        <div class="search-result-item">Generated Box</div>
+      <div class="spacer"></div>
+      <div class="search-bar-wrapper">
+        <div class="search-field">
+          <div class="search-content">
+            <input
+              type="search"
+              id="searchInput"
+              placeholder="Search manga to read..."
+            />
+            <div class="search-box search-box-hide" id="search-box">
+              <div class="search-result-item">Generated Box</div>
+              <div class="search-result-item">Generated Box</div>
+              <div class="search-result-item">Generated Box</div>
+              <div class="search-result-item">Generated Box</div>
+            </div>
+          </div>
+          <button id="search-button" class="search-btn" onclick="search()">
+            🔍
+          </button>
+        </div>
       </div>
+      <div class="spacer"></div>
     </div>
   </body>
 

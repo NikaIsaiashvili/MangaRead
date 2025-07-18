@@ -206,8 +206,15 @@ body.dark .toggle-circle {
   width: 700;
 }
 
+.rec-manga-scroll-wrapper {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+}
+
 .rec-manga-list {
   background-color: var(--primary-color);
+  width: max-content;
   flex: 1;
   margin: 0 auto;
   display: flex;
@@ -217,12 +224,12 @@ body.dark .toggle-circle {
   gap: 30px;
   padding: 20px;
   cursor: pointer;
-  overflow: hidden;
+  animation: scrollCarousel 40s linear infinite;
 }
 
 .manga-list {
   flex: 1;
-  width: fit-content;
+  width: 300px;
   border: 2px solid var(--secondary-color);
   height: 400px;
   border-radius: 5px;
@@ -230,7 +237,7 @@ body.dark .toggle-circle {
 }
 
 .manga-list img {
-  max-width: 220px;
+  width: 250px;
   padding: 5px;
   height: 340px;
   border-radius: 10px;
@@ -246,7 +253,6 @@ body.dark .toggle-circle {
 }
 
 .manga-list:hover img {
-  height: 370px;
   transition: 0.4s ease-in-out;
 }
 
@@ -260,4 +266,13 @@ body.dark .toggle-circle {
   color: white;
   opacity: 1;
   z-index: 100;
+}
+
+@keyframes scrollCarousel {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }

@@ -209,6 +209,7 @@ body.dark .toggle-circle {
 .rec-manga-scroll-wrapper {
   overflow: hidden;
   width: 100%;
+  margin: 0 auto;
   position: relative;
 }
 
@@ -224,7 +225,9 @@ body.dark .toggle-circle {
   gap: 30px;
   padding: 20px;
   cursor: pointer;
-  animation: scrollCarousel 40s linear infinite;
+  animation: scrollCarousel 30s linear infinite;
+  border: 2px solid var(--secondary-color);
+  margin: 15px 0;
 }
 
 .manga-list {
@@ -269,10 +272,10 @@ body.dark .toggle-circle {
 }
 
 @keyframes scrollCarousel {
-  0% {
-    transform: translateX(-50%);
-  }
   100% {
     transform: translateX(0);
+  }
+  0% {
+    transform: translateX(-50%);
   }
 }

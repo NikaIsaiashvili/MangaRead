@@ -4,6 +4,7 @@ const toggle = document.getElementById("toggle");
 const searchButton = document.getElementById("search-button");
 const carousel = document.querySelector(".rec-manga-list");
 const searchBox = document.getElementById("search-box");
+const searchResult = document.getElementById("search-result-item");
 
 const recMangaArray = [
   {
@@ -42,19 +43,79 @@ const recMangaArray = [
     info: "'Berserk' is a dark fantasy manga series created by Kentaro Miura, first published in 1988. The story follows Guts, a tragic antihero known as the Black Swordsman, who battles his way through a brutal and unforgiving world filled with demons, knights, and moral complexities.",
   },
 ];
+
 // toggle dark white mode
 document.addEventListener("DOMContentLoaded", () => {
   carousel.style.animationPlayState = "running";
+  const isDark = document.body.classList.contains("dark");
+  searchResult.style.color = isDark ? "#f0f0f0" : "#d63031";
+
   toggle.addEventListener("click", () => {
     document.body.classList.toggle("dark");
     const isDark = document.body.classList.contains("dark");
     toggle.textContent = isDark ? "☀️" : "🌙";
     carousel.style.backgroundColor = isDark ? "#2d3436" : "#f0f0f0";
+    searchResult.style.color = isDark ? "#f0f0f0" : "#d63031";
   });
   // search button onclick
   searchButton.addEventListener("click", () => {
-    searchBox.classList.toggle("search-box-hide");
+    const searchString = searchInput.value.trim();
+    if (!searchString) return;
+
+    searchBox.classList.remove("search-box-hide");
+    searchManga(searchString);
   });
+
+  async function searchManga(searchString) {
+    const url = `https://corsproxy.io/?https://api.mangadex.org/manga?title=${encodeURIComponent(
+      searchString
+    )}&limit=5`;
+
+    try {
+      const response = await fetch(url);
+      if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error("Error fetching manga:", error);
+      return { data: [] };
+    }
+  }
+
+  // Handle search button click
+  searchButton.addEventListener("click", async () => {
+    const searchText = searchInput.value.trim();
+    if (!searchText) return;
+
+    // Show search box and clear results
+    searchBox.classList.remove("search-box-hide");
+    searchResult.innerHTML = "<p>Loading...</p>";
+    searchResult.classList.add("paragraph");
+
+    const result = await searchManga(searchText);
+
+    // Clear loading message
+    searchResult.innerHTML = "";
+
+    if (!result.data.length) {
+      searchResult.innerHTML = "<p>No results found.</p>";
+      return;
+    }
+
+    // Render results
+    result.data.forEach((manga) => {
+      const title = manga.attributes.title.en || "No English Title";
+      const mangaDiv = document.createElement("div");
+      mangaDiv.classList.add("search-result-div");
+      mangaDiv.innerHTML = `<strong>${title}</strong>`;
+      searchResult.appendChild(mangaDiv);
+
+      // mangaDiv.addEventListener("click", () => {
+      //   console.log(mangaDiv);
+      // });
+    });
+  });
+
   // makes array lenght divs for rec manga
   for (let i = 0; i < recMangaArray.length; i++) {
     const manga = recMangaArray[i];
@@ -76,4 +137,19 @@ document.addEventListener("DOMContentLoaded", () => {
     carousel.style.animationPlayState = "running";
   });
   carousel.innerHTML += carousel.innerHTML;
+
+  document.addEventListener("click", (event) => {
+    const isClickInsideSearchBox = searchBox.contains(event.target);
+    const isClickInsideInput = searchInput.contains(event.target);
+    const isClickInsideButton = searchButton.contains(event.target);
+
+    // If click is outside search box, input, and button, hide it
+    if (
+      !isClickInsideSearchBox &&
+      !isClickInsideInput &&
+      !isClickInsideButton
+    ) {
+      searchBox.classList.add("search-box-hide");
+    }
+  });
 });

@@ -14,6 +14,10 @@
   --primary-transparented: rgba(255, 255, 255, 0.137);
 }
 
+p {
+  font-size: 1.5rem;
+}
+
 body {
   background-color: var(--light-bg);
   transition: background-color 0.3s, color 0.3s;
@@ -163,15 +167,29 @@ body.dark .toggle-circle {
   display: none;
 }
 
-.search-box .search-result-item {
+.search-box #search-result-item {
   min-height: 100px;
   padding: 5px 10px;
-  background-color: var(--primary-color);
   color: var(--secondary-color);
   font-weight: bold;
   border-radius: 5px;
   cursor: pointer;
   justify-content: center;
+}
+
+.search-result-div {
+  background-color: var(--primary-color);
+  padding: 20px 10px;
+  margin: 10px 0;
+  color: var(--secondary-color);
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.search-result-div:hover {
+  color: #d63031;
+  transition: all 0.5s;
 }
 
 .search-box::-webkit-scrollbar {

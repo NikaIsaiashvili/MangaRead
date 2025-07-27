@@ -307,6 +307,32 @@ body.dark .toggle-circle {
   box-shadow: -5px -5px 5px 0 var(--accent-color);
 }
 
+.clicked-manga-box {
+  display: flex;
+  width: 90%;
+  min-height: 500px;
+  margin: 0 auto;
+}
+
+.image-div {
+  background-color: rgba(28, 0, 128, 0.473);
+  flex: 0.7;
+  max-height: 500px;
+  padding: 10px;
+}
+
+.manga-info-div {
+  flex: 1;
+  background-color: coral;
+  padding: 10px;
+}
+
+.chapter-div {
+  background-color: aqua;
+  flex: 0.2;
+  padding: 10px;
+}
+
 @keyframes scrollCarousel {
   100% {
     transform: translateX(0);

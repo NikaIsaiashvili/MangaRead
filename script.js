@@ -3,6 +3,7 @@
 const toggle = document.getElementById("toggle");
 const searchButton = document.getElementById("search-button");
 const carousel = document.querySelector(".rec-manga-list");
+const recMangaContainer = document.querySelector(".rec-manga-container");
 const searchBox = document.getElementById("search-box");
 const searchResult = document.getElementById("search-result-item");
 
@@ -109,10 +110,40 @@ document.addEventListener("DOMContentLoaded", () => {
       mangaDiv.classList.add("search-result-div");
       mangaDiv.innerHTML = `<strong>${title}</strong>`;
       searchResult.appendChild(mangaDiv);
+    });
+    // Open Searched manga on large screen
+    document.addEventListener("click", async (event) => {
+      const updatedMangaDivs = document.querySelectorAll(".search-result-div");
+      const clickedMangaDiv = [...updatedMangaDivs].some((div) =>
+        div.contains(event.target)
+      );
+      if (clickedMangaDiv) {
+        recMangaContainer.style.display = "none";
 
-      // mangaDiv.addEventListener("click", () => {
-      //   console.log(mangaDiv);
-      // });
+        const clickedMangaBox = document.createElement("div");
+        clickedMangaBox.classList.add("clicked-manga-box");
+
+        const imageDiv = document.createElement("div");
+        imageDiv.classList.add("image-div");
+
+        const mangaInfoDiv = document.createElement("div");
+        mangaInfoDiv.classList.add("manga-info-div");
+
+        mangaInfoDiv.textContent = "here is manga info";
+        imageDiv.textContent = "here is manga IMAGE";
+
+        const chapterDiv = document.createElement("div");
+        chapterDiv.classList.add("chapter-div");
+        chapterDiv.textContent = "here is manga chapters";
+
+        const existingBox = document.querySelector(".clicked-manga-box");
+        if (existingBox) existingBox.remove();
+
+        document.body.appendChild(clickedMangaBox);
+        clickedMangaBox.appendChild(imageDiv);
+        clickedMangaBox.appendChild(mangaInfoDiv);
+        clickedMangaBox.appendChild(chapterDiv);
+      }
     });
   });
 
